@@ -30,6 +30,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, Board board);
 
+    bool is_clean();
 };
 
 

@@ -23,7 +23,6 @@ void set_board_map() {
     for (int i = 0; i < 48; ++i) {
         cities_map_file>>city;
         cities_map_file>>color;
-        City s = city;
         while (cities_map_file.peek() != '\n'){
 
 
@@ -43,4 +42,9 @@ city = line.substr(0,line.find_first_of(' '));
 
 int &Board::operator[](City city) {
 
+    return _cities_deasees.at(city);
+}
+
+bool Board::is_clean() {
+    return true;
 }

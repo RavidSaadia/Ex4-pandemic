@@ -9,20 +9,32 @@ Player &Player::take_card(City city) {
     return *this;
 }
 
-void Player::discover_cure(Color color) {
-
+Player& Player::discover_cure(Color color) {
+    return *this;
 }
 
-Player &Player::role() {
-    Player p {};
-    return p;
+string Player::role() {
+    return this->_role;
 }
 
-std::ostream &pandemic::operator<<(std::ostream os, Player p ) {
+std::ostream &pandemic::operator<<(std::ostream &os, Player p ) {
     return os;
 }
 
-void Player::drive(City city) {
+Player& Player::drive(City city) {
 
+    return *this;
+}
+
+Player &Player::fly_charter(City city) {
+    return *this;
+}
+
+Player &Player::treat(City city) {
+    return *this;
+}
+
+Player &Player::fly_direct(City city) {
+    return *this;
 }
 

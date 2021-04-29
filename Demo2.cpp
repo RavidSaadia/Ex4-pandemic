@@ -46,7 +46,7 @@ bool can_discover_cure(Player& player, Color color) {
 
 // Check the conditions in which the given player can discover a cure.
 void check_cure_discovery(Player& player) {
-	cout << "Checking a " << player.role() << ": " << endl;
+	cout << "Checking a ";// << player.role() << ": " << endl;
 
 	take_four_red_cards(player);
 	cout << "  Four red cards, no research station: " << can_discover_cure(player, Color::Red) << endl;
