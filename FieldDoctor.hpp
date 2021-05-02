@@ -4,12 +4,18 @@
 
 #ifndef UNTITLED_FIELDDOCTOR_HPP
 #define UNTITLED_FIELDDOCTOR_HPP
-class FieldDoctor: public Player{
+#include "Player.hpp"
+namespace pandemic {
+    class FieldDoctor : public Player {
 
 
-public:
-FieldDoctor(Board,City){};
+    public:
+
+        FieldDoctor(Board &board, City city);
+
+        virtual std::string role() const override;
 
 
-};
+    };
+}
 #endif //UNTITLED_FIELDDOCTOR_HPP

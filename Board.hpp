@@ -12,25 +12,49 @@
 #include <array>
 #include <unordered_map>
 #include <unordered_set>
+
 using namespace pandemic;
 using namespace std;
 
 class Board {
 
 private:
-    unordered_map<City,Color> _cities_colors;
-    unordered_map<City,int> _cities_deasees;
-    unordered_map<City,unordered_set<City>> _cities_connection;
-
+    unordered_map<City, Color> _cities_colors;
+    unordered_map<City, int> _cities_disease;
+    unordered_map<City, unordered_set<City>> _cities_connection;
+    unordered_map<City, bool> _research_stations;
+    unordered_set<Color> _cure_map;
 
 
 public:
 
+
+    Board();
     int &operator[](City city);
 
     friend std::ostream &operator<<(std::ostream &os, Board board);
 
     bool is_clean();
+
+    bool build_s(City city);
+
+     unordered_map<City, int> &getCitiesDisease()  {
+        return _cities_disease;
+    }
+
+     unordered_map<City, bool> &getResearchStations()  {
+        return _research_stations;
+    }
+     unordered_map<City, Color> &getCitiesColors()  {
+        return _cities_colors;
+    }
+
+     unordered_map<City, unordered_set<City>> &getCitiesConnection()  {
+        return _cities_connection;
+    }
+     unordered_set<Color> &getCureMap()  {
+        return _cure_map;
+    }
 };
 
 

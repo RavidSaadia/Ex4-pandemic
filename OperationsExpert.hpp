@@ -4,40 +4,16 @@
 #ifndef UNTITLED_OPERATIONSEXPERT_HPP
 #define UNTITLED_OPERATIONSEXPERT_HPP
 #include "Player.hpp"
+using namespace pandemic;
+    class OperationsExpert : public Player {
 
-class OperationsExpert:public Player{
+    public:
+        OperationsExpert(Board &b,City c);
 
-public:
-    OperationsExpert(Board,City);
-    void build() {
+        virtual std::string role() const override;
 
-    }
-
-    void fly_direct(City city);
-
-
-    void treat(City city);
-
-    void fly_charter(City city);
-
-    void fly_shuttle(City city);
-};
-
-void OperationsExpert::fly_direct(City city) {
-
-}
-
-void OperationsExpert::treat(City city) {
-
-}
-
-void OperationsExpert::fly_charter(City city) {
-
-}
-
-void OperationsExpert::fly_shuttle(City city) {
-
-}
+        Player &build();
+    };
 
 
 #endif //UNTITLED_OPERATIONSEXPERT_HPP

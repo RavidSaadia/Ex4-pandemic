@@ -4,11 +4,19 @@
 
 #ifndef UNTITLED_RESEARCHER_HPP
 #define UNTITLED_RESEARCHER_HPP
-class Researcher:public Player{
 
-public:
-    Researcher(Board,City);
+#include "Player.hpp"
+namespace pandemic {
+    class Researcher : public Player {
+
+    public:
+
+        Researcher(Board &board, City city);
+
+        virtual std::string role() const override;
 
 
-};
+    };
+
 #endif //UNTITLED_RESEARCHER_HPP
+}

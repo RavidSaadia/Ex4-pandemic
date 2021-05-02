@@ -13,27 +13,34 @@
 namespace pandemic {
 
     class Player {
-
-        std::string  _role;
+    protected:
+        Board _p_board;
+        City _p_city;
+        unordered_map<City, bool> _cards;
+        unordered_map<Color, std::size_t> _colors_counter;
 
     public:
-        Player();
+
+        Player(Board &board, City city);
 
         Player &take_card(City city);
 
-        Player& discover_cure(Color color);
+        virtual Player &build();
+        virtual Player &fly_shuttle(City city);
 
-        std::string role();
+        virtual Player &discover_cure(Color color);
 
-        friend std::ostream &operator<<(std::ostream&, Player);
+        virtual std::string role() const = 0;
 
-        Player& drive(City city);
+        friend std::ostream &operator<<(std::ostream &, Player);
 
-        Player &fly_charter(City city);
+        virtual Player &drive(City city);
 
-        Player &treat(City city);
+        virtual Player &fly_charter(City city);
 
-        Player &fly_direct(City city);
+        virtual Player &treat(City city);
+
+        virtual Player &fly_direct(City city);
     };
 
 }

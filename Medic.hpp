@@ -4,10 +4,16 @@
 
 #ifndef UNTITLED_MEDIC_HPP
 #define UNTITLED_MEDIC_HPP
-class Medic:public Player{
 
-public:
-Medic(Board,City);
+#include "Player.hpp"
+namespace pandemic {
+    class Medic : public Player {
 
-};
+    public:
+        Medic(Board &board, City city);
+        virtual std::string role() const override;
+
+    };
+
 #endif //UNTITLED_MEDIC_HPP
+}
