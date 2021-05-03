@@ -35,7 +35,7 @@ int main() {
 
 	/* build action */
 
-	player.build();  // legal action: you build a research station in Atlanta.
+//	player.build();  // legal action: you build a research station in Atlanta.
 		// NOTE: you do not have the Atlanta card, so for other roles this would throw an exception.
 		//       But for the OperationsExpert it is legal, since he may build a research station without a card.
 

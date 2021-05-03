@@ -15,7 +15,7 @@ namespace pandemic {
 
     class Player {
     protected:
-        Board _p_board;
+        Board &_p_board;
         City _p_city;
         unordered_map<City, bool> _cards;
         unordered_map<Color, std::size_t> _colors_counter;

@@ -76,7 +76,7 @@ Player &Player::fly_charter(City city) {
 Player &Player::treat(City city) {
     Color city_color = _p_board.getCitiesColors()[city];
 
-    if (_p_board.getCureMap().contains(city_color) == 0){
+    if (_p_board.getCitiesDisease()[city] == 0){
         throw invalid_argument("there isn`t any diseases cube on the city!");
         }
     if (_p_board.getCureMap().contains(city_color)){
