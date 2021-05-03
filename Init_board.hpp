@@ -177,8 +177,78 @@ namespace pandemic {
         };
 
     }
+
+void init_research_stations(unordered_map<City, bool> &map) {
+
+    map = {
+            {City::Algiers, false},
+            {City::Atlanta, false},
+            {City::Baghdad, false},
+            {City::Bangkok, false},
+            {City::Beijing, false},
+            {City::Bogota, false},
+            {City::BuenosAires, false},
+            {City::Cairo, false},
+            {City::Chennai, false},
+            {City::Chicago, false},
+            {City::Delhi, false},
+            {City::Essen, false},
+            {City::HoChiMinhCity, false},
+            {City::HongKong, false},
+            {City::Istanbul, false},
+            {City::Jakarta, false},
+            {City::Johannesburg, false},
+            {City::Karachi, false},
+            {City::Khartoum, false},
+            {City::Kinshasa, false},
+            {City::Kolkata, false},
+            {City::Lagos, false},
+            {City::Lima, false},
+            {City::London, false},
+            {City::LosAngeles, false},
+            {City::Madrid, false},
+            {City::Manila, false},
+            {City::MexicoCity, false},
+            {City::Miami, false},
+            {City::Milan, false},
+            {City::Montreal, false},
+            {City::Moscow, false},
+            {City::Mumbai, false},
+            {City::NewYork, false},
+            {City::Osaka, false},
+            {City::Paris, false},
+            {City::Riyadh, false},
+            {City::SanFrancisco, false},
+            {City::Santiago, false},
+            {City::SaoPaulo, false},
+            {City::Seoul, false},
+            {City::Shanghai, false},
+            {City::StPetersburg, false},
+            {City::Sydney, false},
+            {City::Taipei, false},
+            {City::Tehran, false},
+            {City::Tokyo, false},
+            {City::Washington, false},
+
+    };
+
 }
-//unordered_map<City, int> _cities_disease;
-//unordered_map<City, unordered_set<City>> _cities_connection;
-//unordered_map<City, bool> _research_stations;
 //unordered_set<Color> _cure_map;
+
+//    void init_cure_map(unordered_set<Color> &map) {
+//        map = {
+//                {Color::Black}
+//                },
+//                {City::Atlanta,       Color::Blue},
+//                {City::Baghdad,       Color::Black},
+//                {City::Bangkok,       Color::Red},
+//                {City::Beijing,       Color::Red},
+//                {City::Bogota,        Color::Yellow},
+//                {City::BuenosAires,   Co
+//
+//        }
+//
+//    }
+
+}
+

@@ -22,6 +22,8 @@ namespace pandemic {
         unordered_map<City, int> _cities_disease;
         unordered_map<City, unordered_set<City>> _cities_connection;
         unordered_map<City, bool> _research_stations;
+
+
         unordered_set<Color> _cure_map;
 
 
@@ -36,11 +38,14 @@ namespace pandemic {
 
         bool is_clean();
 
-        bool build_s(City city);
 
         unordered_map<City, int> &getCitiesDisease() {
             return _cities_disease;
         }
+
+        bool is_connected(City city1, City city2);
+
+        bool have_Research_Stations(City city);
 
         unordered_map<City, bool> &getResearchStations() {
             return _research_stations;
@@ -57,7 +62,13 @@ namespace pandemic {
         unordered_set<Color> &getCureMap() {
             return _cure_map;
         }
+        void setCitiesDisease(City city, int i) {
+            _cities_disease[city] = i  ;
+        }
 
+        void setResearchStations(City city, bool b) {
+            _research_stations[city] = b;
+        }
         void remove_cures();
     };
 }

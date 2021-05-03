@@ -32,20 +32,24 @@ bool Board::is_clean() {
     return true;
 }
 
-bool Board::build_s(City city) {
-    if (_research_stations.contains(city)) { return false; }
-    else
-        _research_stations[city] = true;
-    return true;
-}
+
 
 Board::Board() {
 init_cities_connection(_cities_connection);
 init_colors(_cities_colors);
 init_cities_disease(_cities_disease);
+    init_research_stations(_research_stations);
+}
+bool Board::is_connected(City city1,City city2){
+    return _cities_connection[city1].contains(city2);
+
 }
 
 void Board::remove_cures() {
 
+}
+
+bool Board::have_Research_Stations(City city) {
+    return _research_stations[city];
 }
 
