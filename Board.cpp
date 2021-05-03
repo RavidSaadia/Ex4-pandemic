@@ -4,14 +4,14 @@
 
 #include <fstream>
 #include "Board.hpp"
-
-std::ostream &operator<<(std::ostream &os, Board board) {
+using namespace pandemic;
+using namespace std;
+ostream &pandemic::operator<<(ostream &os, Board &board) {
 
 
     return os;
 }
 
-Board Board() {};
 
 void set_board_map() {
     ifstream cities_map_file{"cities_map"};
@@ -38,7 +38,7 @@ void set_board_map() {
 
 }
 
-int &Board::operator[](City city) {
+int &pandemic::Board::operator[](City city) {
 
     return _cities_disease.at(city);
 }
@@ -54,10 +54,19 @@ bool Board::is_clean() {
     return true;
 }
 
-bool Board::build_s(City city) {
+bool pandemic::Board::build_s(pandemic::City city) {
     if (_research_stations.contains(city)) { return false; }
     else
         _research_stations[city] = true;
     return true;
+}
+
+Board::Board() {
+
+
+}
+
+void Board::remove_cures() {
+
 }
 

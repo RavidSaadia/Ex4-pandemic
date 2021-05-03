@@ -88,3 +88,7 @@ Player &Player::fly_shuttle(City city) {
 
 }
 
+//std::ostream &pandemic::operator<<(ostream &, Player player) {
+//    return <#initializer#>;
+//}
+

@@ -5,6 +5,7 @@
 #ifndef UNTITLED_PLAYER_HPP
 #define UNTITLED_PLAYER_HPP
 
+#pragma once
 
 #include "Board.hpp"
 #include "City.hpp"
@@ -32,7 +33,7 @@ namespace pandemic {
 
         virtual std::string role() const = 0;
 
-        friend std::ostream &operator<<(std::ostream &, Player);
+//        friend std::ostream &operator<<(std::ostream &, Player player);
 
         virtual Player &drive(City city);
 
