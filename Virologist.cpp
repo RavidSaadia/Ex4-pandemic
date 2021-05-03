@@ -4,7 +4,7 @@
 #include "Virologist.hpp"
 using namespace pandemic;
 using namespace std;
-Virologist::Virologist(Board &board, City city) : Player(board, city){
+Virologist::Virologist(Board &board, City city) : pandemic::Player(board, city){
 
 }
 

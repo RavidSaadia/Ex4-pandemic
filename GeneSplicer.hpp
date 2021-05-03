@@ -4,6 +4,7 @@
 
 #ifndef UNTITLED_GENESPLICER_HPP
 #define UNTITLED_GENESPLICER_HPP
+#pragma once
 
 #include "Player.hpp"
 

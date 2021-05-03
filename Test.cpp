@@ -8,6 +8,26 @@
 
 
 TEST_CASE ("operators with known types") {
-
-
+int a = 4;
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
+CHECK_EQ(a,4);
 }

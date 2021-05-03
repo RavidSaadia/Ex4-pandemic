@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include "Board.hpp"
+#include "Init_board.hpp"
 using namespace pandemic;
 using namespace std;
 ostream &pandemic::operator<<(ostream &os, Board &board) {
@@ -13,30 +14,7 @@ ostream &pandemic::operator<<(ostream &os, Board &board) {
 }
 
 
-void set_board_map() {
-    ifstream cities_map_file{"cities_map"};
-    string line;
-    string city;
-    string color;
-    for (int i = 0; i < 48; ++i) {
-        cities_map_file >> city;
-        cities_map_file >> color;
-        while (cities_map_file.peek() != '\n') {
 
-
-        }
-
-    }
-
-
-    while (getline(cities_map_file, line)) {
-        city = line.substr(0, line.find_first_of(' '));
-
-
-    }
-
-
-}
 
 int &pandemic::Board::operator[](City city) {
 
@@ -54,7 +32,7 @@ bool Board::is_clean() {
     return true;
 }
 
-bool pandemic::Board::build_s(pandemic::City city) {
+bool Board::build_s(City city) {
     if (_research_stations.contains(city)) { return false; }
     else
         _research_stations[city] = true;
@@ -62,8 +40,9 @@ bool pandemic::Board::build_s(pandemic::City city) {
 }
 
 Board::Board() {
-
-
+init_cities_connection(_cities_connection);
+init_colors(_cities_colors);
+init_cities_disease(_cities_disease);
 }
 
 void Board::remove_cures() {

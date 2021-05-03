@@ -4,7 +4,7 @@
 #include "Researcher.hpp"
 using namespace pandemic;
 using namespace std;
-Researcher::Researcher(Board &board, City city) : Player(board, city){
+Researcher::Researcher(Board &board, City city) : pandemic::Player(board, city){
 
 }
 

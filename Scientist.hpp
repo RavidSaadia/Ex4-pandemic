@@ -4,6 +4,7 @@
 
 #ifndef UNTITLED_SCIENTIST_HPP
 #define UNTITLED_SCIENTIST_HPP
+#pragma once
 
 #include "Player.hpp"
 namespace pandemic {

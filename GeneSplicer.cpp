@@ -6,7 +6,7 @@
 using namespace pandemic;
 using namespace std;
 
-GeneSplicer::GeneSplicer(Board &board, City city) : Player(board, city) {
+GeneSplicer::GeneSplicer(Board &board, City city) : pandemic::Player(board, city) {
 
 }
 

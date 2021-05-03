@@ -4,6 +4,8 @@
 
 #ifndef UNTITLED_FIELDDOCTOR_HPP
 #define UNTITLED_FIELDDOCTOR_HPP
+#pragma once
+
 #include "Player.hpp"
 namespace pandemic {
     class FieldDoctor : public Player {

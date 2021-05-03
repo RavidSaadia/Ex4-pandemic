@@ -3,17 +3,19 @@
 //
 #ifndef UNTITLED_OPERATIONSEXPERT_HPP
 #define UNTITLED_OPERATIONSEXPERT_HPP
+#pragma once
 #include "Player.hpp"
-using namespace pandemic;
+
+namespace pandemic {
     class OperationsExpert : public Player {
 
     public:
-        OperationsExpert(Board &b,City c);
+        OperationsExpert(Board &b, City c);
 
-        virtual std::string role() const override;
+         std::string role() const override;
 
-        Player &build();
+        Player &build() override;
     };
 
-
+}
 #endif //UNTITLED_OPERATIONSEXPERT_HPP

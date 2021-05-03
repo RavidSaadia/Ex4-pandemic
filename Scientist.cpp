@@ -6,7 +6,7 @@
 #include "Scientist.hpp"
 using namespace pandemic;
 using namespace std;
-Scientist::Scientist(Board &board, City city,int n) : Player(board, city), _n(n){
+Scientist::Scientist(Board &board, City city,int n) : pandemic::Player(board, city), _n(n){
 
 }
 

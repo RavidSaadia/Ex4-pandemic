@@ -4,6 +4,7 @@
 
 #ifndef UNTITLED_MEDIC_HPP
 #define UNTITLED_MEDIC_HPP
+#pragma once
 
 #include "Player.hpp"
 namespace pandemic {

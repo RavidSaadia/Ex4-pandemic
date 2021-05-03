@@ -5,7 +5,7 @@
 
 
 #include "Player.hpp"
-
+using namespace pandemic;
 
 Player::Player(Board &b, City c) : _p_board(b), _p_city(c) {}
 

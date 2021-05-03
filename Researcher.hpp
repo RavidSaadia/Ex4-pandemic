@@ -1,7 +1,7 @@
 //
 // Created by ravid on 29/04/2021.
 //
-
+#pragma once
 #ifndef UNTITLED_RESEARCHER_HPP
 #define UNTITLED_RESEARCHER_HPP
 
@@ -17,6 +17,5 @@ namespace pandemic {
 
 
     };
-
-#endif //UNTITLED_RESEARCHER_HPP
 }
+#endif //UNTITLED_RESEARCHER_HPP
