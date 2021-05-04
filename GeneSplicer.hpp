@@ -14,10 +14,11 @@ namespace pandemic {
 
         GeneSplicer(Board &board, City city);
 
-        virtual std::string role() const override;
+         std::string role() const override;
 
-        virtual Player &discover_cure(Color color) override;
+         Player &discover_cure(Color color) override;
 
+        static size_t sum_of_cards(unordered_map<Color, size_t> map);
     };
 
 #endif //UNTITLED_GENESPLICER_HPP

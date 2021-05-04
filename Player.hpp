@@ -33,7 +33,6 @@ namespace pandemic {
 
         virtual std::string role() const = 0;
 
-//        friend std::ostream &operator<<(std::ostream &, Player player);
 
         virtual Player &drive(City city);
 

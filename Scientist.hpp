@@ -12,14 +12,15 @@ namespace pandemic {
     class Scientist : public Player {
 
     private:
-        int _n;
+        size_t _n;
 
     public:
 
 
-        Scientist(Board &board, City city, int n);
+        Scientist(Board &board, City city, size_t n);
 
-        virtual std::string role() const override;
+        std::string role() const override;
+        Player &discover_cure(Color color) override;
 
 
         int getN() const {

@@ -52,7 +52,7 @@ namespace pandemic {
         }
 
 
-        bool is_cured(Color color) {
+        bool there_is_cured(Color color) {
             return _cure_map.contains(color);
         }
         void found_cure(Color color){

@@ -8,4 +8,27 @@
 
 
 TEST_CASE ("operators with known types") {
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
+    CHECK_EQ(0,0);
 }

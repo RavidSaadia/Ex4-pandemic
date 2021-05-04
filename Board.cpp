@@ -22,10 +22,9 @@ int &pandemic::Board::operator[](City city) {
 }
 
 bool Board::is_clean() {
-    auto it = _cities_disease.begin();
-    for (; it != _cities_disease.end(); ++it) {
 
-        if (it->second > 0) { return false; }
+for(auto [_,disease]:_cities_disease){
+        if (disease > 0) { return false; }
 
     }
 
@@ -46,7 +45,7 @@ bool Board::is_connected(City city1,City city2){
 }
 
 void Board::remove_cures() {
-
+_cure_map.clear();
 }
 
 bool Board::have_Research_Stations(City city) {
