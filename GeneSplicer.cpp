@@ -17,9 +17,9 @@ Player &GeneSplicer::discover_cure(Color color) {
             cards_number++;
         }
     }
-    if ( _p_board.getCureMap().contains(color)) {// if the cure is already found do nothing.
+    if ( _p_board.is_cured(color)) {// if the cure is already found do nothing.
         return *this;
-    } else if (_p_board.getResearchStations().contains(_p_city)//check if there is a station in the city.
+    } else if (_p_board.have_Research_Stations(_p_city)//check if there is a station in the city.
                && cards_number >= 5) {               //check if there is 5 cards in the required color.
         size_t counter = 0;
         for (auto[_, have]:_cards) { // if there is, put theme down.
@@ -32,7 +32,7 @@ Player &GeneSplicer::discover_cure(Color color) {
             }
         }
             _colors_counter[color] -= 5;
-        _p_board.getCureMap().insert(color);
+        _p_board.found_cure(color);
 
     } else {
         throw invalid_argument("the city should have a Research Stations "
