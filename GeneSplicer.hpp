@@ -16,7 +16,7 @@ namespace pandemic {
 
          std::string role() const override;
 
-         Player &discover_cure(Color color) override;
+        GeneSplicer &discover_cure(Color color) override;
 
         static size_t sum_of_cards(unordered_map<Color, size_t> map);
     };

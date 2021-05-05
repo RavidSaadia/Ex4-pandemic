@@ -7,7 +7,7 @@ Medic::Medic(Board &board, City city) : pandemic::Player(board, city){
         _p_board.setCitiesDisease(_p_city,0);// treat Automatically as a Medic if there is a cure.
     }
 }
-Player &Medic::drive(City city) {
+Medic &Medic::drive(City city) {
    Player::drive(city);
     if (_p_board.there_is_cured(_p_board.get_city_color(city))) {
         _p_board.setCitiesDisease(_p_city,0);// treat Automatically as a Medic if there is a cure.
@@ -15,7 +15,7 @@ Player &Medic::drive(City city) {
    return *this;
 }
 
-Player &Medic::fly_direct(City city) {
+Medic &Medic::fly_direct(City city) {
     Player::fly_direct(city);
     if (_p_board.there_is_cured(_p_board.get_city_color(city))) {
         _p_board.setCitiesDisease(_p_city,0);// treat Automatically as a Medic if there is a cure.
@@ -23,7 +23,7 @@ Player &Medic::fly_direct(City city) {
     return *this;
 }
 
-Player &Medic::fly_charter(City city) {
+Medic &Medic::fly_charter(City city) {
     Player::fly_charter(city);
     if (_p_board.there_is_cured(_p_board.get_city_color(city))) {
         _p_board.setCitiesDisease(_p_city,0);// treat Automatically as a Medic if there is a cure.
@@ -31,7 +31,7 @@ Player &Medic::fly_charter(City city) {
     return *this;
 }
 
-Player &Medic::fly_shuttle(City city) {
+Medic &Medic::fly_shuttle(City city) {
     Player::fly_shuttle(city);
     if (_p_board.there_is_cured(_p_board.get_city_color(city))) {
         _p_board.setCitiesDisease(_p_city,0);// treat Automatically as a Medic if there is a cure.
@@ -39,7 +39,7 @@ Player &Medic::fly_shuttle(City city) {
     return *this;
 
 }
-Player &Medic::treat(City city) {
+Medic  &Medic::treat(City city) {
 //    Color city_color = _p_board.get_city_color(city);
     if (_p_city != city){
         throw invalid_argument("you cant cure city that you arn`t in it!");

@@ -12,7 +12,7 @@ namespace pandemic {
         Dispatcher(Board &board, City city);
 
          std::string role() const override;
-        Player &fly_direct(City city) override;
+        Dispatcher &fly_direct(City city) override;
 
     };
 }

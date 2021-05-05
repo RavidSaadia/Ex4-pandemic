@@ -13,11 +13,11 @@ namespace pandemic {
     public:
         Medic(Board &board, City city);
          std::string role() const override;
-        Player &treat(City city) override;
-        Player &drive(City city) override;
-        Player &fly_direct(City city) override;
-        Player &fly_charter(City city) override;
-        Player &fly_shuttle(City city) override;
+        Medic &treat(City city) override;
+        Medic &drive(City city) override;
+        Medic &fly_direct(City city) override;
+        Medic &fly_charter(City city) override;
+        Medic &fly_shuttle(City city) override;
 
 
     };

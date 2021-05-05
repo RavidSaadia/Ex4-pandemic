@@ -12,7 +12,7 @@ namespace pandemic {
     public:
 
         Researcher(Board &board, City city);
-        Player &discover_cure(Color color) override;
+        Researcher &discover_cure(Color color) override;
 
         virtual std::string role() const override;
 

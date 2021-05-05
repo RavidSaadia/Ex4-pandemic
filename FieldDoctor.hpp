@@ -16,7 +16,7 @@ namespace pandemic {
         FieldDoctor(Board &board, City city);
 
          std::string role() const override;
-        Player &treat(City city) override;
+        FieldDoctor &treat(City city) override;
 
 
     };

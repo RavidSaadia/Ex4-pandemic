@@ -348,7 +348,7 @@ DOCTEST_MSVC_SUPPRESS_WARNING(26812) // Prefer 'enum class' over 'enum'
 #ifndef DOCTEST_BREAK_INTO_DEBUGGER
 // should probably take a look at https://github.com/scottt/debugbreak
 #ifdef DOCTEST_PLATFORM_MAC
-#define DOCTEST_BREAK_INTO_DEBUGGER() __asm__("int $3\_n" : :)
+#define DOCTEST_BREAK_INTO_DEBUGGER() __asm__("int $3\n" : :)
 #elif DOCTEST_MSVC
 #define DOCTEST_BREAK_INTO_DEBUGGER() __debugbreak()
 #elif defined(__MINGW32__)
@@ -3851,7 +3851,7 @@ namespace detail {
         // Call sysctl.
         size = sizeof(info);
         if(sysctl(mib, DOCTEST_COUNTOF(mib), &info, &size, 0, 0) != 0) {
-            std::cerr << "\nCall to sysctl failed - unable to determine if debugger is active **\_n";
+            std::cerr << "\nCall to sysctl failed - unable to determine if debugger is active **\n";
             return false;
         }
         // We're being debugged if the P_TRACED flag is set.
@@ -4236,8 +4236,8 @@ namespace {
 #ifndef DOCTEST_CONFIG_NO_EXCEPTIONS
         throw e;
 #else  // DOCTEST_CONFIG_NO_EXCEPTIONS
-        std::cerr << "doctest will terminate because it needed to throw an exception.\_n"
-                  << "The message was: " << e.what() << '\_n';
+        std::cerr << "doctest will terminate because it needed to throw an exception.\n"
+                  << "The message was: " << e.what() << '\n';
         std::terminate();
 #endif // DOCTEST_CONFIG_NO_EXCEPTIONS
     }
@@ -4454,8 +4454,8 @@ namespace {
                 // This means: bitpattern 10XX XXXX and the extracted value is sane (ish)
                 bool valid = true;
                 uint32_t value = headerValue(c);
-                for (std::size_t _n = 1; _n < encBytes; ++_n) {
-                    uchar nc = m_str[idx + _n];
+                for (std::size_t n = 1; n < encBytes; ++n) {
+                    uchar nc = m_str[idx + n];
                     valid &= ((nc & 0xC0) == 0x80);
                     value = (value << 6) | (nc & 0x3F);
                 }
@@ -4475,8 +4475,8 @@ namespace {
                 }
 
                 // If we got here, this is in fact a valid(ish) utf-8 sequence
-                for (std::size_t _n = 0; _n < encBytes; ++_n) {
-                    os << m_str[idx + _n];
+                for (std::size_t n = 0; n < encBytes; ++n) {
+                    os << m_str[idx + n];
                 }
                 idx += encBytes - 1;
                 break;
@@ -4595,12 +4595,12 @@ namespace {
     //}
 
     //void XmlWriter::writeStylesheetRef( std::string const& url ) {
-    //    m_os << "<?xml-stylesheet type=\"text/xsl\" href=\"" << url << "\"?>\_n";
+    //    m_os << "<?xml-stylesheet type=\"text/xsl\" href=\"" << url << "\"?>\n";
     //}
 
     //XmlWriter& XmlWriter::writeBlankLine() {
     //    ensureTagClosed();
-    //    m_os << '\_n';
+    //    m_os << '\n';
     //    return *this;
     //}
 
@@ -4612,7 +4612,7 @@ namespace {
     }
 
     void XmlWriter::writeDeclaration() {
-        m_os << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\_n";
+        m_os << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     }
 
     void XmlWriter::newlineIfNecessary() {
@@ -4902,7 +4902,7 @@ namespace {
         void separator_to_stream() {
             s << Color::Yellow
               << "==============================================================================="
-                 "\_n";
+                 "\n";
         }
 
         const char* getSuccessOrFailString(bool success, assertType::Enum at,
@@ -4932,11 +4932,11 @@ namespace {
                 for(int i = 0; i < num_contexts; ++i) {
                     s << (i == 0 ? "" : "          ");
                     contexts[i]->stringify(&s);
-                    s << "\_n";
+                    s << "\n";
                 }
             }
 
-            s << "\_n";
+            s << "\n";
         }
 
         void logTestStart() {
@@ -4944,20 +4944,20 @@ namespace {
                 return;
 
             separator_to_stream();
-            file_line_to_stream(s, tc->m_file, tc->m_line, "\_n");
+            file_line_to_stream(s, tc->m_file, tc->m_line, "\n");
             if(tc->m_description)
-                s << Color::Yellow << "DESCRIPTION: " << Color::None << tc->m_description << "\_n";
+                s << Color::Yellow << "DESCRIPTION: " << Color::None << tc->m_description << "\n";
             if(tc->m_test_suite && tc->m_test_suite[0] != '\0')
-                s << Color::Yellow << "TEST SUITE: " << Color::None << tc->m_test_suite << "\_n";
+                s << Color::Yellow << "TEST SUITE: " << Color::None << tc->m_test_suite << "\n";
             if(strncmp(tc->m_name, "  Scenario:", 11) != 0)
                 s << Color::None << "TEST CASE:  ";
-            s << Color::None << tc->m_name << "\_n";
+            s << Color::None << tc->m_name << "\n";
 
             for(auto& curr : subcasesStack)
                 if(curr.m_name[0] != '\0')
-                    s << "  " << curr.m_name << "\_n";
+                    s << "  " << curr.m_name << "\n";
 
-            s << "\_n";
+            s << "\n";
 
             hasLoggedCurrentTestStart = true;
         }
@@ -4965,134 +4965,134 @@ namespace {
         void printVersion() {
             if(opt.no_version == false)
                 s << Color::Cyan << "[doctest] " << Color::None << "doctest version is \""
-                  << DOCTEST_VERSION_STR << "\"\_n";
+                  << DOCTEST_VERSION_STR << "\"\n";
         }
 
         void printIntro() {
             printVersion();
             s << Color::Cyan << "[doctest] " << Color::None
-              << "run with \"--" DOCTEST_OPTIONS_PREFIX_DISPLAY "help\" for options\_n";
+              << "run with \"--" DOCTEST_OPTIONS_PREFIX_DISPLAY "help\" for options\n";
         }
 
         void printHelp() {
             int sizePrefixDisplay = static_cast<int>(strlen(DOCTEST_OPTIONS_PREFIX_DISPLAY));
             printVersion();
             // clang-format off
-            s << Color::Cyan << "[doctest]\_n" << Color::None;
+            s << Color::Cyan << "[doctest]\n" << Color::None;
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "boolean values: \"1/on/yes/true\" or \"0/off/no/false\"\_n";
+            s << "boolean values: \"1/on/yes/true\" or \"0/off/no/false\"\n";
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "filter  values: \"str1,str2,str3\" (comma separated strings)\_n";
-            s << Color::Cyan << "[doctest]\_n" << Color::None;
+            s << "filter  values: \"str1,str2,str3\" (comma separated strings)\n";
+            s << Color::Cyan << "[doctest]\n" << Color::None;
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "filters use wildcards for matching strings\_n";
+            s << "filters use wildcards for matching strings\n";
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "something passes a filter if any of the strings in a filter matches\_n";
+            s << "something passes a filter if any of the strings in a filter matches\n";
 #ifndef DOCTEST_CONFIG_NO_UNPREFIXED_OPTIONS
-            s << Color::Cyan << "[doctest]\_n" << Color::None;
+            s << Color::Cyan << "[doctest]\n" << Color::None;
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "ALL FLAGS, OPTIONS AND FILTERS ALSO AVAILABLE WITH A \"" DOCTEST_CONFIG_OPTIONS_PREFIX "\" PREFIX!!!\_n";
+            s << "ALL FLAGS, OPTIONS AND FILTERS ALSO AVAILABLE WITH A \"" DOCTEST_CONFIG_OPTIONS_PREFIX "\" PREFIX!!!\n";
 #endif
-            s << Color::Cyan << "[doctest]\_n" << Color::None;
+            s << Color::Cyan << "[doctest]\n" << Color::None;
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "Query flags - the program quits after them. Available:\_n\_n";
+            s << "Query flags - the program quits after them. Available:\n\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "?,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "help, -" DOCTEST_OPTIONS_PREFIX_DISPLAY "h                      "
-              << Whitespace(sizePrefixDisplay*0) <<  "prints this message\_n";
+              << Whitespace(sizePrefixDisplay*0) <<  "prints this message\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "v,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "version                       "
-              << Whitespace(sizePrefixDisplay*1) << "prints the version\_n";
+              << Whitespace(sizePrefixDisplay*1) << "prints the version\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "c,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "count                         "
-              << Whitespace(sizePrefixDisplay*1) << "prints the number of matching tests\_n";
+              << Whitespace(sizePrefixDisplay*1) << "prints the number of matching tests\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "ltc, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "list-test-cases               "
-              << Whitespace(sizePrefixDisplay*1) << "lists all matching tests by name\_n";
+              << Whitespace(sizePrefixDisplay*1) << "lists all matching tests by name\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "lts, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "list-test-suites              "
-              << Whitespace(sizePrefixDisplay*1) << "lists all matching test suites\_n";
+              << Whitespace(sizePrefixDisplay*1) << "lists all matching test suites\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "lr,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "list-reporters                "
-              << Whitespace(sizePrefixDisplay*1) << "lists all registered reporters\_n\_n";
+              << Whitespace(sizePrefixDisplay*1) << "lists all registered reporters\n\n";
             // ================================================================================== << 79
             s << Color::Cyan << "[doctest] " << Color::None;
-            s << "The available <int>/<string> options/filters are:\_n\_n";
+            s << "The available <int>/<string> options/filters are:\n\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "tc,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "test-case=<filters>           "
-              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their name\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their name\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "tce, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "test-case-exclude=<filters>   "
-              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their name\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their name\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "sf,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "source-file=<filters>         "
-              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their file\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their file\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "sfe, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "source-file-exclude=<filters> "
-              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their file\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their file\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "ts,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "test-suite=<filters>          "
-              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their test suite\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters     tests by their test suite\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "tse, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "test-suite-exclude=<filters>  "
-              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their test suite\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters OUT tests by their test suite\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "sc,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "subcase=<filters>             "
-              << Whitespace(sizePrefixDisplay*1) << "filters     subcases by their name\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters     subcases by their name\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "sce, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "subcase-exclude=<filters>     "
-              << Whitespace(sizePrefixDisplay*1) << "filters OUT subcases by their name\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters OUT subcases by their name\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "r,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "reporters=<filters>           "
-              << Whitespace(sizePrefixDisplay*1) << "reporters to use (console is default)\_n";
+              << Whitespace(sizePrefixDisplay*1) << "reporters to use (console is default)\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "o,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "out=<string>                  "
-              << Whitespace(sizePrefixDisplay*1) << "output filename\_n";
+              << Whitespace(sizePrefixDisplay*1) << "output filename\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "ob,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "order-by=<string>             "
-              << Whitespace(sizePrefixDisplay*1) << "how the tests should be ordered\_n";
-            s << Whitespace(sizePrefixDisplay*3) << "                                       <string> - by [file/suite/name/rand]\_n";
+              << Whitespace(sizePrefixDisplay*1) << "how the tests should be ordered\n";
+            s << Whitespace(sizePrefixDisplay*3) << "                                       <string> - by [file/suite/name/rand]\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "rs,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "rand-seed=<int>               "
-              << Whitespace(sizePrefixDisplay*1) << "seed for random ordering\_n";
+              << Whitespace(sizePrefixDisplay*1) << "seed for random ordering\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "f,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "first=<int>                   "
-              << Whitespace(sizePrefixDisplay*1) << "the first test passing the filters to\_n";
-            s << Whitespace(sizePrefixDisplay*3) << "                                       execute - for range-based execution\_n";
+              << Whitespace(sizePrefixDisplay*1) << "the first test passing the filters to\n";
+            s << Whitespace(sizePrefixDisplay*3) << "                                       execute - for range-based execution\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "l,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "last=<int>                    "
-              << Whitespace(sizePrefixDisplay*1) << "the last test passing the filters to\_n";
-            s << Whitespace(sizePrefixDisplay*3) << "                                       execute - for range-based execution\_n";
+              << Whitespace(sizePrefixDisplay*1) << "the last test passing the filters to\n";
+            s << Whitespace(sizePrefixDisplay*3) << "                                       execute - for range-based execution\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "aa,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "abort-after=<int>             "
-              << Whitespace(sizePrefixDisplay*1) << "stop after <int> failed assertions\_n";
+              << Whitespace(sizePrefixDisplay*1) << "stop after <int> failed assertions\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "scfl,--" DOCTEST_OPTIONS_PREFIX_DISPLAY "subcase-filter-levels=<int>   "
-              << Whitespace(sizePrefixDisplay*1) << "apply filters for the first <int> levels\_n";
-            s << Color::Cyan << "\_n[doctest] " << Color::None;
-            s << "Bool options - can be used like flags and true is assumed. Available:\_n\_n";
+              << Whitespace(sizePrefixDisplay*1) << "apply filters for the first <int> levels\n";
+            s << Color::Cyan << "\n[doctest] " << Color::None;
+            s << "Bool options - can be used like flags and true is assumed. Available:\n\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "s,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "success=<bool>                "
-              << Whitespace(sizePrefixDisplay*1) << "include successful assertions in output\_n";
+              << Whitespace(sizePrefixDisplay*1) << "include successful assertions in output\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "cs,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "case-sensitive=<bool>         "
-              << Whitespace(sizePrefixDisplay*1) << "filters being treated as case sensitive\_n";
+              << Whitespace(sizePrefixDisplay*1) << "filters being treated as case sensitive\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "e,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "exit=<bool>                   "
-              << Whitespace(sizePrefixDisplay*1) << "exits after the tests finish\_n";
+              << Whitespace(sizePrefixDisplay*1) << "exits after the tests finish\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "d,   --" DOCTEST_OPTIONS_PREFIX_DISPLAY "duration=<bool>               "
-              << Whitespace(sizePrefixDisplay*1) << "prints the time duration of each test\_n";
+              << Whitespace(sizePrefixDisplay*1) << "prints the time duration of each test\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nt,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-throw=<bool>               "
-              << Whitespace(sizePrefixDisplay*1) << "skips exceptions-related assert checks\_n";
+              << Whitespace(sizePrefixDisplay*1) << "skips exceptions-related assert checks\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "ne,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-exitcode=<bool>            "
-              << Whitespace(sizePrefixDisplay*1) << "returns (or exits) always with success\_n";
+              << Whitespace(sizePrefixDisplay*1) << "returns (or exits) always with success\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nr,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-run=<bool>                 "
-              << Whitespace(sizePrefixDisplay*1) << "skips all runtime doctest operations\_n";
+              << Whitespace(sizePrefixDisplay*1) << "skips all runtime doctest operations\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nv,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-version=<bool>             "
-              << Whitespace(sizePrefixDisplay*1) << "omit the framework version in the output\_n";
+              << Whitespace(sizePrefixDisplay*1) << "omit the framework version in the output\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nc,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-colors=<bool>              "
-              << Whitespace(sizePrefixDisplay*1) << "disables colors in output\_n";
+              << Whitespace(sizePrefixDisplay*1) << "disables colors in output\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "fc,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "force-colors=<bool>           "
-              << Whitespace(sizePrefixDisplay*1) << "use colors even when not in a tty\_n";
+              << Whitespace(sizePrefixDisplay*1) << "use colors even when not in a tty\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nb,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-breaks=<bool>              "
-              << Whitespace(sizePrefixDisplay*1) << "disables breakpoints in debuggers\_n";
+              << Whitespace(sizePrefixDisplay*1) << "disables breakpoints in debuggers\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "ns,  --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-skip=<bool>                "
-              << Whitespace(sizePrefixDisplay*1) << "don't skip test cases marked as skip\_n";
+              << Whitespace(sizePrefixDisplay*1) << "don't skip test cases marked as skip\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "gfl, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "gnu-file-line=<bool>          "
-              << Whitespace(sizePrefixDisplay*1) << ":_n: vs (_n): for line numbers in output\_n";
+              << Whitespace(sizePrefixDisplay*1) << ":n: vs (n): for line numbers in output\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "npf, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-path-filenames=<bool>      "
-              << Whitespace(sizePrefixDisplay*1) << "only filenames and no paths in output\_n";
+              << Whitespace(sizePrefixDisplay*1) << "only filenames and no paths in output\n";
             s << " -" DOCTEST_OPTIONS_PREFIX_DISPLAY "nln, --" DOCTEST_OPTIONS_PREFIX_DISPLAY "no-line-numbers=<bool>        "
-              << Whitespace(sizePrefixDisplay*1) << "0 instead of real line numbers in output\_n";
+              << Whitespace(sizePrefixDisplay*1) << "0 instead of real line numbers in output\n";
             // ================================================================================== << 79
             // clang-format on
 
-            s << Color::Cyan << "\_n[doctest] " << Color::None;
-            s << "for more information visit the project documentation\_n\_n";
+            s << Color::Cyan << "\n[doctest] " << Color::None;
+            s << "for more information visit the project documentation\n\n";
         }
 
         void printRegisteredReporters() {
             printVersion();
             auto printReporters = [this] (const reporterMap& reporters, const char* type) {
                 if(reporters.size()) {
-                    s << Color::Cyan << "[doctest] " << Color::None << "listing all registered " << type << "\_n";
+                    s << Color::Cyan << "[doctest] " << Color::None << "listing all registered " << type << "\n";
                     for(auto& curr : reporters)
                         s << "priority: " << std::setw(5) << curr.first.first
-                          << " name: " << curr.first.second << "\_n";
+                          << " name: " << curr.first.second << "\n";
                 }
             };
             printReporters(getListeners(), "listeners");
@@ -5104,14 +5104,14 @@ namespace {
             if(opt.count || opt.list_test_cases) {
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "unskipped test cases passing the current filters: "
-                  << g_cs->numTestCasesPassingFilters << "\_n";
+                  << g_cs->numTestCasesPassingFilters << "\n";
             } else if(opt.list_test_suites) {
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "unskipped test cases passing the current filters: "
-                  << g_cs->numTestCasesPassingFilters << "\_n";
+                  << g_cs->numTestCasesPassingFilters << "\n";
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "test suites with unskipped test cases passing the current filters: "
-                  << g_cs->numTestSuitesPassingFilters << "\_n";
+                  << g_cs->numTestSuitesPassingFilters << "\n";
             }
         }
 
@@ -5129,34 +5129,34 @@ namespace {
             } else if(opt.count || opt.list_test_cases) {
                 if(opt.list_test_cases) {
                     s << Color::Cyan << "[doctest] " << Color::None
-                      << "listing all test case names\_n";
+                      << "listing all test case names\n";
                     separator_to_stream();
                 }
 
                 for(unsigned i = 0; i < in.num_data; ++i)
-                    s << Color::None << in.data[i]->m_name << "\_n";
+                    s << Color::None << in.data[i]->m_name << "\n";
 
                 separator_to_stream();
 
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "unskipped test cases passing the current filters: "
-                  << g_cs->numTestCasesPassingFilters << "\_n";
+                  << g_cs->numTestCasesPassingFilters << "\n";
 
             } else if(opt.list_test_suites) {
-                s << Color::Cyan << "[doctest] " << Color::None << "listing all test suites\_n";
+                s << Color::Cyan << "[doctest] " << Color::None << "listing all test suites\n";
                 separator_to_stream();
 
                 for(unsigned i = 0; i < in.num_data; ++i)
-                    s << Color::None << in.data[i]->m_test_suite << "\_n";
+                    s << Color::None << in.data[i]->m_test_suite << "\n";
 
                 separator_to_stream();
 
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "unskipped test cases passing the current filters: "
-                  << g_cs->numTestCasesPassingFilters << "\_n";
+                  << g_cs->numTestCasesPassingFilters << "\n";
                 s << Color::Cyan << "[doctest] " << Color::None
                   << "test suites with unskipped test cases passing the current filters: "
-                  << g_cs->numTestSuitesPassingFilters << "\_n";
+                  << g_cs->numTestSuitesPassingFilters << "\n";
             }
         }
 
@@ -5179,13 +5179,13 @@ namespace {
                 s << (numSkipped == 0 ? Color::None : Color::Yellow) << std::setw(6) << numSkipped
                   << " skipped" << Color::None;
             }
-            s << "\_n";
+            s << "\n";
             s << Color::Cyan << "[doctest] " << Color::None << "assertions: " << std::setw(6)
               << p.numAsserts << " | "
               << ((p.numAsserts == 0 || anythingFailed) ? Color::None : Color::Green)
               << std::setw(6) << (p.numAsserts - p.numAssertsFailed) << " passed" << Color::None
               << " | " << (p.numAssertsFailed > 0 ? Color::Red : Color::None) << std::setw(6)
-              << p.numAssertsFailed << " failed" << Color::None << " |\_n";
+              << p.numAssertsFailed << " failed" << Color::None << " |\n";
             s << Color::Cyan << "[doctest] " << Color::None
               << "Status: " << (p.numTestCasesFailed > 0 ? Color::Red : Color::Green)
               << ((p.numTestCasesFailed > 0) ? "FAILURE!" : "SUCCESS!") << Color::None << std::endl;
@@ -5207,27 +5207,27 @@ namespace {
 
             if(opt.duration)
                 s << Color::None << std::setprecision(6) << std::fixed << st.seconds
-                  << " s: " << tc->m_name << "\_n";
+                  << " s: " << tc->m_name << "\n";
 
             if(st.failure_flags & TestCaseFailureReason::Timeout)
                 s << Color::Red << "Test case exceeded time limit of " << std::setprecision(6)
-                  << std::fixed << tc->m_timeout << "!\_n";
+                  << std::fixed << tc->m_timeout << "!\n";
 
             if(st.failure_flags & TestCaseFailureReason::ShouldHaveFailedButDidnt) {
-                s << Color::Red << "Should have failed but didn't! Marking it as failed!\_n";
+                s << Color::Red << "Should have failed but didn't! Marking it as failed!\n";
             } else if(st.failure_flags & TestCaseFailureReason::ShouldHaveFailedAndDid) {
-                s << Color::Yellow << "Failed as expected so marking it as not failed\_n";
+                s << Color::Yellow << "Failed as expected so marking it as not failed\n";
             } else if(st.failure_flags & TestCaseFailureReason::CouldHaveFailedAndDid) {
-                s << Color::Yellow << "Allowed to fail so marking it as not failed\_n";
+                s << Color::Yellow << "Allowed to fail so marking it as not failed\n";
             } else if(st.failure_flags & TestCaseFailureReason::DidntFailExactlyNumTimes) {
                 s << Color::Red << "Didn't fail exactly " << tc->m_expected_failures
-                  << " times so marking it as failed!\_n";
+                  << " times so marking it as failed!\n";
             } else if(st.failure_flags & TestCaseFailureReason::FailedExactlyNumTimes) {
                 s << Color::Yellow << "Failed exactly " << tc->m_expected_failures
-                  << " times as expected so marking it as not failed!\_n";
+                  << " times as expected so marking it as not failed!\n";
             }
             if(st.failure_flags & TestCaseFailureReason::TooManyFailedAsserts) {
-                s << Color::Red << "Aborting - too many failed asserts!\_n";
+                s << Color::Red << "Aborting - too many failed asserts!\n";
             }
             s << Color::None; // lgtm [cpp/useless-expression]
         }
@@ -5239,7 +5239,7 @@ namespace {
             successOrFailColoredStringToStream(false, e.is_crash ? assertType::is_require :
                                                                    assertType::is_check);
             s << Color::Red << (e.is_crash ? "test case CRASHED: " : "test case THREW exception: ")
-              << Color::Cyan << e.error_string << "\_n";
+              << Color::Cyan << e.error_string << "\n";
 
             int num_stringified_contexts = get_num_stringified_contexts();
             if(num_stringified_contexts) {
@@ -5247,10 +5247,10 @@ namespace {
                 s << Color::None << "  logged: ";
                 for(int i = num_stringified_contexts; i > 0; --i) {
                     s << (i == num_stringified_contexts ? "" : "          ")
-                      << stringified_contexts[i - 1] << "\_n";
+                      << stringified_contexts[i - 1] << "\n";
                 }
             }
-            s << "\_n" << Color::None;
+            s << "\n" << Color::None;
         }
 
         void subcase_start(const SubcaseSignature& subc) override {
@@ -5281,19 +5281,19 @@ namespace {
                   << Color::None;
 
             if(rb.m_at & assertType::is_throws) { //!OCLINT bitwise operator in conditional
-                s << (rb.m_threw ? "threw as expected!" : "did NOT throw at all!") << "\_n";
+                s << (rb.m_threw ? "threw as expected!" : "did NOT throw at all!") << "\n";
             } else if((rb.m_at & assertType::is_throws_as) &&
                       (rb.m_at & assertType::is_throws_with)) { //!OCLINT
                 s << Color::Cyan << assertString(rb.m_at) << "( " << rb.m_expr << ", \""
                   << rb.m_exception_string << "\", " << rb.m_exception_type << " ) " << Color::None;
                 if(rb.m_threw) {
                     if(!rb.m_failed) {
-                        s << "threw as expected!\_n";
+                        s << "threw as expected!\n";
                     } else {
-                        s << "threw a DIFFERENT exception! (contents: " << rb.m_exception << ")\_n";
+                        s << "threw a DIFFERENT exception! (contents: " << rb.m_exception << ")\n";
                     }
                 } else {
-                    s << "did NOT throw at all!\_n";
+                    s << "did NOT throw at all!\n";
                 }
             } else if(rb.m_at &
                       assertType::is_throws_as) { //!OCLINT bitwise operator in conditional
@@ -5302,7 +5302,7 @@ namespace {
                   << (rb.m_threw ? (rb.m_threw_as ? "threw as expected!" :
                                                     "threw a DIFFERENT exception: ") :
                                    "did NOT throw at all!")
-                  << Color::Cyan << rb.m_exception << "\_n";
+                  << Color::Cyan << rb.m_exception << "\n";
             } else if(rb.m_at &
                       assertType::is_throws_with) { //!OCLINT bitwise operator in conditional
                 s << Color::Cyan << assertString(rb.m_at) << "( " << rb.m_expr << ", \""
@@ -5310,17 +5310,17 @@ namespace {
                   << (rb.m_threw ? (!rb.m_failed ? "threw as expected!" :
                                                    "threw a DIFFERENT exception: ") :
                                    "did NOT throw at all!")
-                  << Color::Cyan << rb.m_exception << "\_n";
+                  << Color::Cyan << rb.m_exception << "\n";
             } else if(rb.m_at & assertType::is_nothrow) { //!OCLINT bitwise operator in conditional
                 s << (rb.m_threw ? "THREW exception: " : "didn't throw!") << Color::Cyan
-                  << rb.m_exception << "\_n";
+                  << rb.m_exception << "\n";
             } else {
                 s << (rb.m_threw ? "THREW exception: " :
-                                   (!rb.m_failed ? "is correct!\_n" : "is NOT correct!\_n"));
+                                   (!rb.m_failed ? "is correct!\n" : "is NOT correct!\n"));
                 if(rb.m_threw)
-                    s << rb.m_exception << "\_n";
+                    s << rb.m_exception << "\n";
                 else
-                    s << "  values: " << assertString(rb.m_at) << "( " << rb.m_decomp << " )\_n";
+                    s << "  values: " << assertString(rb.m_at) << "( " << rb.m_decomp << " )\n";
             }
 
             log_contexts();
@@ -5335,7 +5335,7 @@ namespace {
             s << getSuccessOrFailColor(false, mb.m_severity)
               << getSuccessOrFailString(mb.m_severity & assertType::is_warn, mb.m_severity,
                                         "MESSAGE") << ": ";
-            s << Color::None << mb.m_string << "\_n";
+            s << Color::None << mb.m_string << "\n";
             log_contexts();
         }
 

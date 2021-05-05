@@ -85,14 +85,15 @@ Player &Player::discover_cure(Color color) {
 
         Color city_color = _p_board.get_city_color(card);
         if (city_color == color && have) { // check if the card is exist and it`s the correct color.
-            have = false;// put the card down.
+            _cards[card] = false;// put the card down.
             counter++;
+            _colors_counter[color]--;
         }
         if (counter >= 5) {
             break;
         }
     }
-    _colors_counter[color] -= 5;
+//    _colors_counter[color] -= 5;
     _p_board.found_cure(color);// add to the cure cities.
 
 

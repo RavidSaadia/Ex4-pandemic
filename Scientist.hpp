@@ -20,7 +20,7 @@ namespace pandemic {
         Scientist(Board &board, City city, size_t n);
 
         std::string role() const override;
-        Player &discover_cure(Color color) override;
+        Scientist &discover_cure(Color color) override;
 
 
         int getN() const {

@@ -19,4 +19,4 @@ add_executable(DEMO2
         GeneSplicer.hpp Dispatcher.hpp Medic.hpp Virologist.hpp
         Dispatcher.cpp FieldDoctor.cpp GeneSplicer.cpp Medic.cpp
         OperationsExpert.cpp Researcher.cpp Scientist.cpp Virologist.cpp
-        Init_board.hpp TestCounter.cpp Test.cpp)
+        Init_board.hpp )

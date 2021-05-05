@@ -10,7 +10,7 @@ Virologist::Virologist(Board &board, City city) : pandemic::Player(board, city) 
 
 }
 
-Player &Virologist::treat(City city) {
+Virologist &Virologist::treat(City city) {
     Color city_color = _p_board.get_city_color(city);
     if (_p_board.getCitiesDisease()[city] == 0) {
         throw invalid_argument("there isn`t any diseases cube on the city!");

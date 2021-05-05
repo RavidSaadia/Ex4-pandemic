@@ -11,7 +11,7 @@ Researcher::Researcher(Board &board, City city) : pandemic::Player(board, city) 
 }
 
 
-Player &Researcher::discover_cure(Color color) {
+Researcher &Researcher::discover_cure(Color color) {
 
     if (_p_board.there_is_cured(color)) {// if the cure is already found do nothing.
         return *this;
@@ -23,7 +23,7 @@ Player &Researcher::discover_cure(Color color) {
 
         Color city_color = _p_board.get_city_color(card);
         if (city_color == color && have) { // check if the card is exist and it`s the correct color.
-            have = false;// put the card down.
+            _cards[card] = false;// put the card down.
             counter++;
         }
         if (counter >= 5) {

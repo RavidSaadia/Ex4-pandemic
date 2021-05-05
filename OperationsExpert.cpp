@@ -13,7 +13,7 @@ string OperationsExpert::role() const {
     return "OperationsExpert";
 }
 
-Player &OperationsExpert::build() {
+OperationsExpert &OperationsExpert::build() {
 
     if (!_p_board.have_Research_Stations(_p_city)) {     //if there was`nt a station before
         _p_board.setResearchStations(_p_city,  true);  //build

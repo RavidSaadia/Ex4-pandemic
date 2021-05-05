@@ -9,7 +9,7 @@ using namespace std;
 GeneSplicer::GeneSplicer(Board &board, City city) : pandemic::Player(board, city) {
 
 }
-Player &GeneSplicer::discover_cure(Color color) {
+GeneSplicer &GeneSplicer::discover_cure(Color color) {
 
     if (_p_board.there_is_cured(color)) {// if the cure is already found do nothing.
         return *this;
@@ -24,7 +24,7 @@ Player &GeneSplicer::discover_cure(Color color) {
 
         Color card_color = _p_board.get_city_color(card);
         if (have) { // check if the card is exist.
-            have = false;// put the card down.
+            _cards[card] = false;// put the card down.
             counter++;
             _colors_counter[card_color]--;
         }

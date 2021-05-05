@@ -9,7 +9,7 @@ FieldDoctor::FieldDoctor(Board &board, City city) : pandemic::Player(board, city
 
 }
 
-Player &FieldDoctor::treat(City city) {
+FieldDoctor &FieldDoctor::treat(City city) {
     Color city_color = _p_board.get_city_color(city);
     if (!_p_board.is_connected(_p_city,city) && _p_city != city){
         throw invalid_argument("you cant cure city that you arn`t in it or connected to!");
