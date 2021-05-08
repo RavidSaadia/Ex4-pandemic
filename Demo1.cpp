@@ -5,7 +5,7 @@
  * Since : 2021-04
  */
 
-#include "Board.hpp"
+#include "sources/Board.hpp"
 #include "City.hpp"
 #include "Color.hpp"
 
