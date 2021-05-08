@@ -47,9 +47,7 @@ Medic  &Medic::treat(City city) {
     if (_p_board.getCitiesDisease()[city] == 0){
         throw invalid_argument("there isn`t any diseases cube on the city!");
     }
-//    if (_p_board.there_is_cured(city_color)){
-//        _p_board.setCitiesDisease(city,0);
-//    }
+
     else{
         _p_board.setCitiesDisease(city,0);
     }

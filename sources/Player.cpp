@@ -36,14 +36,18 @@ Player &Player::fly_charter(City city) {
         throw invalid_argument("you dont have your city card!");
     }
     Color city_color = _p_board.get_city_color(_p_city);
-    _p_city = city;
     _cards[_p_city] = false;
+    _p_city = city;
     _colors_counter[city_color]--;
 
     return *this;
 }
 
 Player &Player::fly_shuttle(City city) {
+    if (_p_city == city) {
+        throw invalid_argument("you cant fly_shuttle to the city that you in it!");
+
+    }
     if (!_p_board.have_Research_Stations(_p_city)) {
         throw invalid_argument("you dont have a Research Stations in your city!");
 

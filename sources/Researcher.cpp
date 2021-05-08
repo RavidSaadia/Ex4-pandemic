@@ -18,19 +18,20 @@ Researcher &Researcher::discover_cure(Color color) {
     } else if (_colors_counter[color] < 5) { //check if there is less than 5 cards in the required color.
         throw invalid_argument("you dont have 5 cards in the required color!");
     }
-    size_t counter = 0;
+    size_t number_of_cards_that_throwed = 0;
     for (auto[card, have]:_cards) { // if there is, put theme down.
 
-        Color city_color = _p_board.get_city_color(card);
-        if (city_color == color && have) { // check if the card is exist and it`s the correct color.
+        Color card_color = _p_board.get_city_color(card);
+        if (card_color == color && have) { // check if the card is exist and it`s the correct color.
             _cards[card] = false;// put the card down.
-            counter++;
+            number_of_cards_that_throwed++;
+            _colors_counter[color]--;
+
         }
-        if (counter >= 5) {
+        if (number_of_cards_that_throwed == 5) {
             break;
         }
     }
-    _colors_counter[color] -= 5;
     _p_board.found_cure(color);// add to the cure cities.
 
 

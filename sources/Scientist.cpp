@@ -28,16 +28,18 @@ Scientist &Scientist::discover_cure(Color color) {
     size_t number_of_cards_that_throwed = 0;
     for (auto[card, have]:_cards) { // if there is, put theme down.
 
-        Color city_color = _p_board.get_city_color(card);
-        if (city_color == color && have) { // check if the card is exist and it`s the correct color.
+        Color card_color = _p_board.get_city_color(card);
+        if (card_color == color && have) { // check if the card is exist and it`s the correct color.
             _cards[card] = false;// put the card down.
             number_of_cards_that_throwed++;
+            _colors_counter[color]--; // update the _colors_counter.
+
         }
-        if (number_of_cards_that_throwed >= _n) {
+        if (number_of_cards_that_throwed == _n) {
             break;
         }
     }
-    _colors_counter[color] -=(unsigned long) _n; // update the _colors_counter.
+//    _colors_counter[color] -=(unsigned long) _n; // update the _colors_counter.
     _p_board.found_cure(color);// add to the cure cities.
 
 

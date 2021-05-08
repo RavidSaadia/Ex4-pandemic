@@ -9,6 +9,11 @@ Dispatcher::Dispatcher(Board &board, City city) : pandemic::Player(board, city) 
 }
 
 Dispatcher &Dispatcher::fly_direct(City city) {
+    if (_p_city == city){
+        throw invalid_argument("you cant fly_direct to the city that you in it!");
+
+
+    }
     if (_p_board.have_Research_Stations(_p_city) ){
         _p_city = city;
         return *this;

@@ -15,10 +15,13 @@ Virologist &Virologist::treat(City city) {
     if (_p_board.getCitiesDisease()[city] == 0) {
         throw invalid_argument("there isn`t any diseases cube on the city!");
     }
-    if (_p_city != city) { // if the Virologist arn`t in the city, she drop the city`s card.
+    if (!_cards[city] && _p_city !=city) {
+        throw invalid_argument("you dont have the city card!!");
+    }
+ // if the Virologist arn`t in the city, she drop the city`s card.
         _cards[city] = false;
         _colors_counter[city_color]--;
-    }
+
     if (_p_board.there_is_cured(city_color)) {
         _p_board.setCitiesDisease(city, 0);
     } else {
