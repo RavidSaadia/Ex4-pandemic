@@ -4,9 +4,11 @@
 
 
 #include "Scientist.hpp"
+
 using namespace pandemic;
 using namespace std;
-Scientist::Scientist(Board &board, City city,int n) : pandemic::Player(board, city){
+
+Scientist::Scientist(Board &board, City city, int n) : pandemic::Player(board, city) {
     _n = n;
 //    if (n>5){
 //        throw invalid_argument("there is no point to set n > 5 !!");
@@ -19,10 +21,12 @@ Scientist &Scientist::discover_cure(Color color) {
 
     if (_p_board.there_is_cured(color)) {// if the cure is already found do nothing.
         return *this;
-    } else if (!_p_board.have_Research_Stations(_p_city)) {//check if there is a station in the city.
+    }
+    if (!_p_board.have_Research_Stations(_p_city)) {//check if there is a station in the city.
         throw invalid_argument("you dont have a Research Stations in your city!");
 
-    } else if (_colors_counter[color] < _n) { //check if there is less than n cards in the required color.
+    }
+    if (_colors_counter[color] < _n) { //check if there is less than n cards in the required color.
         throw invalid_argument("you dont have enough cards in the required color!");
     }
     size_t number_of_cards_that_throwed = 0;
@@ -46,6 +50,6 @@ Scientist &Scientist::discover_cure(Color color) {
     return *this;
 }
 
-string pandemic::Scientist::role() const {
+string pandemic::Scientist::role() {
     return "Scientist";
 }

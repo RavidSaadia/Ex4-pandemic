@@ -19,7 +19,7 @@ namespace pandemic {
 
         Scientist(Board &board, City city, int n);
 
-        std::string role() const;
+        static std::string role() ;
         Scientist &discover_cure(Color color) override;
 
 

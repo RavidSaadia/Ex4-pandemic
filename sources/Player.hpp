@@ -27,7 +27,7 @@ namespace pandemic {
         virtual Player &build();
         virtual Player &fly_shuttle(City city);
         virtual Player &discover_cure(Color color);
-        virtual std::string role();
+         static std::string role();
         virtual Player &drive(City city);
         virtual Player &fly_charter(City city);
         virtual Player &treat(City city);

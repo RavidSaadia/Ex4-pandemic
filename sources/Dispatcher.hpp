@@ -11,7 +11,7 @@ namespace pandemic {
     public:
         Dispatcher(Board &board, City city);
 
-         std::string role() const ;
+         static std::string role() ;
         Dispatcher &fly_direct(City city) override;
 
     };

@@ -7,6 +7,7 @@
 #include "Player.hpp"
 
 using namespace pandemic;
+const int FIVE_CARDS = 5;
 
 Player::Player(Board &b, City c) : _p_board(b), _p_city(c) {
 }
@@ -79,10 +80,12 @@ Player &Player::discover_cure(Color color) {
 
     if (_p_board.there_is_cured(color)) {// if the cure is already found do nothing.
         return *this;
-    } else if (!_p_board.have_Research_Stations(_p_city)) {//check if there is a station in the city.
+    }
+    if (!_p_board.have_Research_Stations(_p_city)) {//check if there is a station in the city.
         throw invalid_argument("you dont have a Research Stations in your city!");
 
-    } else if (_colors_counter[color] < 5) { //check if there is less than 5 cards in the required color.
+    }
+    if (_colors_counter[color] < FIVE_CARDS) { //check if there is less than 5 cards in the required color.
         throw invalid_argument("you dont have 5 cards in the required color!");
     }
     size_t counter = 0;
@@ -94,7 +97,7 @@ Player &Player::discover_cure(Color color) {
             counter++;
             _colors_counter[color]--;
         }
-        if (counter >= 5) {
+        if (counter >= FIVE_CARDS) {
             break;
         }
     }
@@ -107,16 +110,15 @@ Player &Player::discover_cure(Color color) {
 
 Player &Player::treat(City city) {
     Color city_color = _p_board.get_city_color(city);
-    if (_p_city != city){
+    if (_p_city != city) {
         throw invalid_argument("you cant cure city that you arn`t in it!");
     }
-    if (_p_board.getCitiesDisease()[city] == 0){
+    if (_p_board.getCitiesDisease()[city] == 0) {
         throw invalid_argument("there isn`t any diseases cube on the city!");
     }
-    if (_p_board.there_is_cured(city_color)){
-        _p_board.setCitiesDisease(city,0);
-    }
-    else{
+    if (_p_board.there_is_cured(city_color)) {
+        _p_board.setCitiesDisease(city, 0);
+    } else {
         _p_board.getCitiesDisease()[city]--;
     }
     return *this;

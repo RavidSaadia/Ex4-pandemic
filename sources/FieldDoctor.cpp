@@ -25,7 +25,7 @@ FieldDoctor &FieldDoctor::treat(City city) {
     }
     return *this;
 }
-string FieldDoctor::role() const {
+string FieldDoctor::role() {
     return "FieldDoctor";
 }
 

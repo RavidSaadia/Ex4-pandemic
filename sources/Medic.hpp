@@ -12,7 +12,7 @@ namespace pandemic {
 
     public:
         Medic(Board &board, City city);
-         std::string role() const ;
+         static std::string role() ;
         Medic &treat(City city) override;
         Medic &drive(City city) override;
         Medic &fly_direct(City city) override;

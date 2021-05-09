@@ -13,7 +13,7 @@ namespace pandemic {
 
         Virologist(Board &board, City city);
 
-         std::string role() const ;
+         static std::string role() ;
         Virologist &treat(City city) override;
 
 

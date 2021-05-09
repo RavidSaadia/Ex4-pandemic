@@ -30,6 +30,6 @@ Virologist &Virologist::treat(City city) {
     return *this;
 }
 
-string Virologist::role() const {
+string Virologist::role() {
     return "Virologist";
 }

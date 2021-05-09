@@ -12,7 +12,7 @@ namespace pandemic {
     public:
         OperationsExpert(Board &b, City c);
 
-         std::string role() const ;
+         static std::string role() ;
 
         OperationsExpert &build() override;
     };

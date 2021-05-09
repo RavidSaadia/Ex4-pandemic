@@ -48,13 +48,13 @@ Medic  &Medic::treat(City city) {
         throw invalid_argument("there isn`t any diseases cube on the city!");
     }
 
-    else{
+
         _p_board.setCitiesDisease(city,0);
-    }
+
     return *this;
 }
 
-std::string Medic::role() const {
+std::string Medic::role() {
     return "Medic";
 }
 

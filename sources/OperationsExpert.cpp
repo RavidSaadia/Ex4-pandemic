@@ -9,7 +9,7 @@ using namespace std;
 OperationsExpert::OperationsExpert(Board &board, City city) : Player(board, city) {
 }
 
-string OperationsExpert::role() const {
+string OperationsExpert::role() {
     return "OperationsExpert";
 }
 

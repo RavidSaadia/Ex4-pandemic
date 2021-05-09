@@ -32,7 +32,7 @@ Dispatcher &Dispatcher::fly_direct(City city) {
 }
 
 
-std::string Dispatcher::role() const {
+std::string Dispatcher::role() {
     return "Dispatcher";
 }
 
