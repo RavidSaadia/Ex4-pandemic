@@ -7,7 +7,7 @@
 #include "Player.hpp"
 
 using namespace pandemic;
-const int FIVE_CARDS = 5;
+const int cards_for_cure = 5;
 
 Player::Player(Board &b, City c) : _p_board(b), _p_city(c) {
 }
@@ -85,7 +85,7 @@ Player &Player::discover_cure(Color color) {
         throw invalid_argument("you dont have a Research Stations in your city!");
 
     }
-    if (_colors_counter[color] < FIVE_CARDS) { //check if there is less than 5 cards in the required color.
+    if (_colors_counter[color] < cards_for_cure) { //check if there is less than 5 cards in the required color.
         throw invalid_argument("you dont have 5 cards in the required color!");
     }
     size_t counter = 0;
@@ -97,7 +97,7 @@ Player &Player::discover_cure(Color color) {
             counter++;
             _colors_counter[color]--;
         }
-        if (counter >= FIVE_CARDS) {
+        if (counter >= cards_for_cure) {
             break;
         }
     }

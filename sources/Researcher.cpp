@@ -5,7 +5,7 @@
 
 using namespace pandemic;
 using namespace std;
-const int FIVE_CARDS = 5;
+const int cards_for_cure = 5;
 
 Researcher::Researcher(Board &board, City city) : pandemic::Player(board, city) {
 
@@ -17,7 +17,7 @@ Researcher &Researcher::discover_cure(Color color) {
     if (_p_board.there_is_cured(color)) {// if the cure is already found do nothing.
         return *this;
     }
-    if (_colors_counter[color] < FIVE_CARDS) { //check if there is less than 5 cards in the required color.
+    if (_colors_counter[color] < cards_for_cure) { //check if there is less than 5 cards in the required color.
         throw invalid_argument("you dont have 5 cards in the required color!");
     }
     size_t number_of_cards_that_throwed = 0;
@@ -30,7 +30,7 @@ Researcher &Researcher::discover_cure(Color color) {
             _colors_counter[color]--;
 
         }
-        if (number_of_cards_that_throwed == FIVE_CARDS) {
+        if (number_of_cards_that_throwed == cards_for_cure) {
             break;
         }
     }

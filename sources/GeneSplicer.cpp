@@ -4,7 +4,7 @@
 #include "GeneSplicer.hpp"
 using namespace pandemic;
 using namespace std;
-const int FIVE_CARDS = 5;
+const int cards_for_cure = 5;
 
 GeneSplicer::GeneSplicer(Board &board, City city) : pandemic::Player(board, city) {
 
@@ -19,7 +19,7 @@ GeneSplicer &GeneSplicer::discover_cure(Color color) {
         throw invalid_argument("you dont have a Research Stations in your city!");
 
     }
-    if (sum_of_cards(_colors_counter) < FIVE_CARDS) { //check if there is less than 5 cards.
+    if (sum_of_cards(_colors_counter) < cards_for_cure) { //check if there is less than 5 cards.
         throw invalid_argument("you have less than 5 cards!");
     }
     size_t counter = 0;
@@ -31,7 +31,7 @@ GeneSplicer &GeneSplicer::discover_cure(Color color) {
             counter++;
             _colors_counter[card_color]--;
         }
-        if (counter >= FIVE_CARDS) {
+        if (counter >= cards_for_cure) {
             break;
         }
     }
